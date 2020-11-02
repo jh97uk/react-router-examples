@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
+
+import Home from './Views/Home';
+import PropsExample from './Views/PropsExample';
+import NestedExample from './Views/NestedExample';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route path="/nested-example/" render={(props)=><NestedExample {...props}/>}/>
+          <Route path="/props-sample/:color" render={(props)=><PropsExample {...props}/>}/>
+          <Route path="/" render={(props)=><Home {...props}/>}/>
+        </Switch>
+      </Router>
     </div>
   );
 }
